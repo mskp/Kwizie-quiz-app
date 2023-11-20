@@ -1,0 +1,74 @@
+.my-quizes {
+  padding: 1rem;
+  width: 100vw;
+  text-align: center;
+  position: absolute;
+  top: 5rem;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin-bottom: 1rem;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 1.5rem;
+  text-align: left;
+  border-bottom: 1px solid #818181;
+}
+
+thead {
+  background-color: rgba(61, 61, 61, 0.5);
+  padding-bottom: 2rem;
+}
+
+thead,
+tbody {
+  border: 1px solid rgb(81, 81, 81);
+}
+
+th,
+td {
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Optional: Style for quiz status */
+
+td:nth-child(2):not(:last-child) {
+  margin-right: 10px;
+}
+
+thead tr {
+  margin-bottom: 2rem !important;
+}
+
+.my-quizes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.action-btn {
+  cursor: pointer;
+}
+
+.action-btn:hover {
+  opacity: 0.7;
+}
+
+.not-found-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  height: 20rem;
+}

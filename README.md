@@ -1,70 +1,91 @@
-# Getting Started with Create React App
+<center>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Kwizie - Create & Play Quizzes
 
-## Available Scripts
+![Kwizie Logo](./public/icon-192x192.png)
 
-In the project directory, you can run:
+**Deployment URL [https://kwizie.vercel.app](https://kwizie.vercel.app)**
 
-### `npm start`
+</center>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+A sleek and responsive React Quiz App that allows users to create and play quizzes. The application leverages Material UI for a polished user interface and Redux Toolkit for efficient state management. User-created quizzes are stored in the local storage, providing persistency across sessions.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Screenshots
 
-### `npm test`
+### Large Device
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Home Page**
 
-### `npm run build`
+![home](./src/assets/readme-img/home.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Play Quiz Page**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![play-quiz](./src/assets/readme-img/play.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **My Quizzes Page**
 
-### `npm run eject`
+![my-quizzes](./src/assets/readme-img/my-quizzes.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Small Device
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Home Page**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<img src="./src/assets/readme-img/home-sm.png" alt="Home" height="500">
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **Play Quiz Page**
 
-## Learn More
+<img src="./src/assets/readme-img/play-sm.png" alt="Play Quiz" height="500">
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **My Quizzes Page**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img src="./src/assets/readme-img/my-quizzes-sm.png" alt="My Quizzes" height="500">
 
-### Code Splitting
+## Features:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **Create Quizzes:**
 
-### Analyzing the Bundle Size
+  - Users can easily create custom quizzes with a user-friendly interface.
+  - Quiz data is stored in the local storage for persistency.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- **Play Quizzes:**
 
-### Making a Progressive Web App
+  - Engage in quizzes created by yourself or others for an interactive learning experience.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **Edit Quizzes:**
 
-### Advanced Configuration
+  - Modify and update existing quizzes with an intuitive editing feature.
+  - Changes are automatically saved to local storage for convenience.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **Sleek and Responsive UI:**
+  - The app offers a modern and polished user interface for an enjoyable user experience.
+  - Responsive design ensures a seamless experience across various devices.
 
-### Deployment
+## Technologies Used:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- **React:** Utilizes the power of React for building a dynamic and efficient user interface.
 
-### `npm run build` fails to minify
+- **Material UI:** Integrates Material UI components to achieve a consistent and visually appealing design.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Redux Toolkit:** Implements Redux Toolkit for state management, ensuring a scalable and maintainable application structure.
+
+## How to Run:
+
+1. **Clone the Repository:**
+
+   ```bash
+   git clone https://github.com/your-username/react-quiz-app.git
+   ```
+
+2. **Install the dependencies:**
+
+   ```bash
+   npm i
+   ```
+
+3. **Run the development server:**
+
+   ```bash
+   npm start
+   ```
+
+4. **Open the URL [http://localhost:3000](http://localhost:3000) in your browser.**

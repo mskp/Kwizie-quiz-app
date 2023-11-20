@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Iso&display=swap");
+
+body.dark-mode .header {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid rgb(59, 59, 59);
+  z-index: 1000;
+  height: 4rem;
+  background-color: rgba(38, 42, 69, 0.7);
+  backdrop-filter: blur(1rem);
+  -webkit-backdrop-filter: blur(1rem);
+  letter-spacing: 0.1ch;
+}
+
+.logo {
+  font-size: 1.7rem;
+  color: rgb(168, 73, 29);
+  font-family: "Rubik Iso", cursive;
+  font-weight: 900;
+  letter-spacing: 0.1ch;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.nav {
+  display: flex;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  @media (max-width: 650px) {
+    position: absolute;
+    height: 0;
+    width: 100%;
+    background: rgb(0, 0, 0);
+    flex-direction: column;
+    top: 4rem;
+    left: 0;
+    overflow: hidden;
+    gap: 0;
+    transition: 0.2s ease-in-out;
+  }
+}
+
+.nav-links.active {
+  height: 100%;
+  transition: 0.2s ease-in-out;
+}
+
+.nav-link {
+  list-style: none;
+  cursor: pointer;
+  color: white;
+  display: block;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+a.active {
+  color: rgb(151 151 151);
+  text-decoration: underline;
+}
+
+.player-info {
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  color: white;
+}
+
+.player-info .player-name {
+  margin-left: 0.2rem;
+}
+
+.menu-btn {
+  background: transparent;
+  border: none;
+  display: none;
+
+  .menu-icon {
+    font-size: 2rem;
+    color: white;
+  }
+
+  @media (max-width: 650px) {
+    display: flex;
+  }
+}
+
+@media (max-width: 650px) {
+  .nav-link {
+    font-size: 2rem;
+  }
+
+  .nav-links.active {
+    height: 100vh;
+  }
+
+  .nav-links li {
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+    border-bottom: 1px solid gray;
+    display: flex;
+    justify-content: center;
+  }
+}
