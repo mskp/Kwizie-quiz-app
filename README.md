@@ -16,29 +16,29 @@ A sleek and responsive React Quiz App that allows users to create and play quizz
 
 - **Home Page**
 
-![home](./src/assets/readme-img/home.png)
+![home](./public/readme-img/home.png)
 
 - **Play Quiz Page**
 
-![play-quiz](./src/assets/readme-img/play.png)
+![play-quiz](./public/readme-img/play.png)
 
 - **My Quizzes Page**
 
-![my-quizzes](./src/assets/readme-img/my-quizzes.png)
+![my-quizzes](./public/readme-img/my-quizzes.png)
 
 ### Small Device
 
 - **Home Page**
 
-<img src="./src/assets/readme-img/home-sm.png" alt="Home" height="500">
+<img src="./public/readme-img/home-sm.png" alt="Home" height="500">
 
 - **Play Quiz Page**
 
-<img src="./src/assets/readme-img/play-sm.png" alt="Play Quiz" height="500">
+<img src="./public/readme-img/play-sm.png" alt="Play Quiz" height="500">
 
 - **My Quizzes Page**
 
-<img src="./src/assets/readme-img/my-quizzes-sm.png" alt="My Quizzes" height="500">
+<img src="./public/readme-img/my-quizzes-sm.png" alt="My Quizzes" height="500">
 
 ## Features:
 
@@ -73,7 +73,7 @@ A sleek and responsive React Quiz App that allows users to create and play quizz
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/your-username/react-quiz-app.git
+   git clone https://github.com/mskp/react-quiz-app.git
    ```
 
 2. **Install the dependencies:**
@@ -89,3 +89,7 @@ A sleek and responsive React Quiz App that allows users to create and play quizz
    ```
 
 4. **Open the URL [http://localhost:3000](http://localhost:3000) in your browser.**
+
+## License:
+
+This repository is MIT licensed. [Read more](./LICENSE.txt)
