@@ -2,7 +2,7 @@
 
 # Kwizie - Create & Play Quizzes
 
-![Kwizie Logo](./public/icon-192x192.png)
+![Kwizie Logo](https://kwizie.vercel.app/icon-192x192.png)
 
 **Deployment URL [https://kwizie.vercel.app](https://kwizie.vercel.app)**
 
@@ -16,29 +16,29 @@ A sleek and responsive React Quiz App that allows users to create and play quizz
 
 - **Home Page**
 
-![home](./public/readme-img/home.png)
+![home](https://kwizie.vercel.app/readme-img/home.png)
 
 - **Play Quiz Page**
 
-![play-quiz](./public/readme-img/play.png)
+![play-quiz](https://kwizie.vercel.app/readme-img/play.png)
 
 - **My Quizzes Page**
 
-![my-quizzes](./public/readme-img/my-quizzes.png)
+![my-quizzes](https://kwizie.vercel.app/readme-img/my-quizzes.png)
 
 ### Small Device
 
 - **Home Page**
 
-<img src="./public/readme-img/home-sm.png" alt="Home" height="500">
+<img src="https://kwizie.vercel.app/readme-img/home-sm.png" alt="Home" height="500">
 
 - **Play Quiz Page**
 
-<img src="./public/readme-img/play-sm.png" alt="Play Quiz" height="500">
+<img src="https://kwizie.vercel.app/readme-img/play-sm.png" alt="Play Quiz" height="500">
 
 - **My Quizzes Page**
 
-<img src="./public/readme-img/my-quizzes-sm.png" alt="My Quizzes" height="500">
+<img src="https://kwizie.vercel.app/readme-img/my-quizzes-sm.png" alt="My Quizzes" height="500">
 
 ## Features:
 
