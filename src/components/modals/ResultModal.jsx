@@ -1,3 +1,4 @@
+// Importing necessary dependencies and components
 import { Modal, Box, Typography, Button } from '@mui/material';
 import Confetti from 'react-confetti';
 import celebrationEmoji from '../../assets/celebration.png';
@@ -8,21 +9,34 @@ import { useNavigate } from 'react-router-dom';
 import { setPlayerName } from '../../slices/playerSlice';
 import { useDispatch } from 'react-redux';
 import modalStyle, { buttonStyles, buttonsContainerStyles } from './modalStyles';
-import { hideNameModal } from '../../slices/modalsSlice';
 
+// Defining the ResultModal component
 export default function ResultModal({ score, outOf, handleReplay }) {
+  // Getting the navigate function from react-router-dom
   const navigate = useNavigate();
+  
+  // Getting access to the Redux dispatch function
   const dispatch = useDispatch();
 
+  // Determining the threshold for winning
   const threshold = outOf * 0.5;
+
+  // Checking if the player has won based on the score and threshold
   const hasWon = score >= threshold;
+
+  // Playing victory or loss sound based on the result
   new Audio(hasWon ? victorySound : lostSound).play();
 
+  // Handling the exit action
   const handleExit = () => {
+    // Dispatching the action to set the player name in the Redux store
     dispatch(setPlayerName(''));
+
+    // Navigating to the "my-quizzes" page
     navigate('/my-quizzes');
   };
 
+  // Rendering the ResultModal component
   return (
     <>
       {hasWon && <Confetti style={{ zIndex: 2, width: "100vw", height: "100vh" }} numberOfPieces={200} />}

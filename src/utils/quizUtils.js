@@ -1,7 +1,7 @@
 /**
  * Validates quiz data to ensure that it meets specific criteria.
  * @param {Object} quizData - The quiz data object to be validated.
- * @returns {boolean} - Returns true if the quiz data is valid, otherwise false.
+ * @returns {Object} - Returns an object with success flag and error message if validation fails.
  */
 export function validateQuizData(quizData) {
   // Validate the quiz title
@@ -22,13 +22,16 @@ export function validateQuizData(quizData) {
   );
 
   // Return true if all validation criteria are met, otherwise false
-  if (!isValidTitle)
+  if (!isValidTitle) {
+    // Return an error message if the quiz title is invalid
     return {
       error: "Invalid Title",
       success: false
     };
+  }
 
   if (!isValidQuestion) {
+    // Return an error message if any quiz question is invalid
     return {
       error: "Invalid Question",
       success: false
@@ -36,13 +39,14 @@ export function validateQuizData(quizData) {
   }
 
   if (!hasValidNumberOfOptions) {
+    // Return an error message if the number of options in any question is invalid
     return {
       error: "Invalid Number Of Options",
       success: false
     };
   }
 
-  // Check weather all the options have proper values.
+  // Check whether all the options have proper values.
   const hasAnyEmptyOption = quizData.questionOptions.some(question =>
     question["options"].some(
       option => option.trim() === ""
@@ -50,8 +54,9 @@ export function validateQuizData(quizData) {
   );
 
   if (hasAnyEmptyOption) {
+    // Return an error message if any option is empty in the quiz questions
     return {
-      error: "Quiz questions cannot contain contain empty options",
+      error: "Quiz questions cannot contain empty options",
       success: false
     }
   }
@@ -59,8 +64,9 @@ export function validateQuizData(quizData) {
   const hasEmptyCorrectOption = quizData.questionOptions.some(question => question.correctAnswer.trim() === '');
 
   if (hasEmptyCorrectOption) {
+    // Return an error message if any question has an empty correct answer
     return {
-      error: "Please select atleast one correct answer per question",
+      error: "Please select at least one correct answer per question",
       success: false
     }
   }
@@ -69,12 +75,19 @@ export function validateQuizData(quizData) {
   return { success: true };
 }
 
+/**
+ * Calculates the score of a quiz based on user answers.
+ * @param {Array} quizData - The array containing quiz data.
+ * @param {Array} userAnswers - The array containing user's answers.
+ * @returns {number} - Returns the calculated quiz score.
+ */
 export function calculateQuizScore(quizData, userAnswers) {
   let score = 0;
   quizData.forEach((quiz, quizIndex) => {
     quiz?.questionOptions?.forEach((question, questionIndex) => {
       const selectedOption = userAnswers[quizIndex]?.[questionIndex];
       if (selectedOption === question.correctAnswer) {
+        // Increase the score if the selected option matches the correct answer
         score++;
       }
     });
@@ -82,6 +95,12 @@ export function calculateQuizScore(quizData, userAnswers) {
   return score;
 }
 
+/**
+ * Creates a deep copy of the provided data using JSON serialization.
+ * @param {*} data - The data to be deep copied.
+ * @returns {*} - Returns the deep copied data.
+ */
 export function createDeepCopy(data) {
-  return JSON.parse(JSON.stringify(data))
+  // Use JSON.stringify and JSON.parse to create a deep copy of the data
+  return JSON.parse(JSON.stringify(data));
 }

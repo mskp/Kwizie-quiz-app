@@ -1,3 +1,4 @@
+// Importing necessary dependencies and components
 import { useState } from 'react';
 import { Modal, Typography, TextField, Button, Box } from '@mui/material';
 import { useDispatch } from 'react-redux';
@@ -6,19 +7,33 @@ import { setPlayerName } from '../../slices/playerSlice';
 import { hideNameModal } from '../../slices/modalsSlice';
 import modalStyle, { buttonStyles, buttonsContainerStyles } from "./modalStyles";
 
-export default function NameModal({open}) {
+// Defining the NameModal component
+export default function NameModal({ open }) {
+  // Setting up state for the player's name
   const [name, setName] = useState('');
+  
+  // Getting access to the Redux dispatch function
   const dispatch = useDispatch();
+  
+  // Getting the navigate function from react-router-dom
   const navigate = useNavigate();
 
+  // Handling the play quiz action
   const handlePlayQuiz = (e) => {
     e.preventDefault();
+    
+    // Checking if the entered name is valid
     const invalidName = !name || name.length < 5 || name.length > 30;
     if (invalidName) return;
+
+    // Dispatching the action to set the player name in the Redux store
     dispatch(setPlayerName(name));
+
+    // Dispatching the action to hide the name modal
     dispatch(hideNameModal());
   };
 
+  // Rendering the NameModal component
   return (
     <Modal open={open}>
       <Box

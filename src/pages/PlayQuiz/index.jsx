@@ -1,3 +1,4 @@
+// Importing necessary dependencies and components
 import {
   getQuizData,
   getTotalActiveQuestionsLength,
@@ -9,7 +10,6 @@ import ResultModal from "../../components/modals/ResultModal";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import Option from "./Option";
-
 import { hideNameModal, showNameModal, showQuitModal } from "../../slices/modalsSlice";
 import ConfirmQuitModal from "../../components/modals/ConfirmQuitModal";
 import NameModal from "../../components/modals/NameModal";
@@ -20,10 +20,15 @@ import { calculateQuizScore } from "../../utils/quizUtils";
 import { useNavigate } from "react-router-dom";
 
 export default function PlayQuiz() {
+  // React Router hook for navigation
   const navigate = useNavigate();
+
+  // Redux hooks for dispatch and selector
   const dispatch = useDispatch();
   const quizData = useSelector(getQuizData);
   const outOf = useSelector(getTotalActiveQuestionsLength);
+
+  // State to manage the quiz progress
   const [currentQuizIndex, setCurrentQuizIndex] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentQuestionCount, setCurrentQuestionCount] = useState(1);
@@ -32,17 +37,22 @@ export default function PlayQuiz() {
     Array.from({ length: quizData.length }, () => ({}))
   );
 
+  // State to manage the score and option selection status
   const [score, setScore] = useState(0);
   const [isOptionSelected, setIsOptionSelected] = useState(false);
+
+  // Get player name from Redux state
   const playerName = useSelector((state) => state.player.name);
 
-  // Modal State
+  // Modal State from Redux
   const nameModalState = useSelector((state) => state.nameModal.value);
   const quitModalState = useSelector((state) => state.quitModal.value);
 
+  // Effect to handle modal display and beforeunload event
   useEffect(() => {
     if (quizData?.length && quizData.length !== 0) {
       dispatch(showNameModal());
+
       const handleBeforeUnload = (e) => {
         e.preventDefault();
         e.returnValue = "";
@@ -54,17 +64,20 @@ export default function PlayQuiz() {
         window.removeEventListener("beforeunload", handleBeforeUnload);
       };
     }
-  }, []);
+  }, [dispatch, quizData.length]);
 
+  // Get current quiz and question
   const currentQuiz = quizData[currentQuizIndex];
   const currentQuestion = currentQuiz?.questionOptions[currentQuestionIndex];
   const isLastQuestionInQuiz =
     currentQuestionIndex === currentQuiz?.questionOptions?.length - 1;
 
+  // Handle click on the Next button
   const handleNextClick = () => {
     if (!isOptionSelected) {
-      return toast.error("Please select at least one option", { id: "option-selection-alert" })
+      return toast.error("Please select at least one option", { id: "option-selection-alert" });
     }
+
     if (isLastQuestionInQuiz && currentQuizIndex === quizData.length - 1) {
       const calculatedScore = calculateQuizScore(quizData, userAnswers);
       setScore(calculatedScore);
@@ -82,6 +95,7 @@ export default function PlayQuiz() {
     setCurrentQuestionCount((prev) => prev + 1);
   };
 
+  // Handle click on the Previous button
   const handlePrevClick = () => {
     // Check if we are at the first question of the current quiz
     if (currentQuestionIndex === 0) {
@@ -105,6 +119,7 @@ export default function PlayQuiz() {
     );
   };
 
+  // Handle replaying the quiz
   const handleReplay = () => {
     setCurrentQuizIndex(0);
     setCurrentQuestionIndex(0);
@@ -117,6 +132,7 @@ export default function PlayQuiz() {
     navigate("/play-quiz");
   };
 
+  // Handle click on an option
   const handleOptionClick = (selectedOption) => {
     new Audio(clickSoundFile).play();
     const updatedUserAnswers = [...userAnswers];
@@ -128,6 +144,7 @@ export default function PlayQuiz() {
     setIsOptionSelected(true);
   };
 
+  // Conditional rendering based on different states
   if (quizData?.length === 0)
     return (
       <section className={styles.play_quiz_section}>
@@ -136,17 +153,14 @@ export default function PlayQuiz() {
         </p>
       </section>
     )
-
   else if (!playerName && nameModalState)
     return (
       <NameModal open={true} />
     )
-
   else if (quizOver)
     return (
       <ResultModal score={score} outOf={outOf} handleReplay={handleReplay} />
     )
-
   else
     return (
       <section className={styles.play_quiz_section}>

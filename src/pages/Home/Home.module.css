@@ -1,4 +1,4 @@
-.centered-boxes {
+.centered_boxes {
   display: flex;
   justify-content: center;
   margin-top: 2rem;
@@ -20,7 +20,7 @@
   align-items: center;
   backdrop-filter: blur(1rem);
 
-  .box-title {
+  .box_title {
     font-size: 3rem;
     color: rgb(255, 255, 255);
     font-weight: 900;
