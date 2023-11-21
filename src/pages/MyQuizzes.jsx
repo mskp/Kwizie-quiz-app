@@ -146,7 +146,13 @@ export default function MyQuizzes() {
           </TableContainer>
         ) : (
           // Message when no quizzes are found
-          <Typography variant="body1" display={"inline-block"} position={"absolute"} top={"10rem"} width={"100%"} textAlign={"center"} fontSize={"2rem"} height={"20rem"}>
+          <Typography
+            top={"10rem"}
+            display={"flex"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            fontSize={"2rem"}
+            height={"20rem"}>
             No quizzes found
           </Typography>
         )}
