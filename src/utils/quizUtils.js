@@ -1,7 +1,7 @@
 /**
  * Validates quiz data to ensure that it meets specific criteria.
  * @param {Object} quizData - The quiz data object to be validated.
- * @returns {Object} - Returns an object with success flag and error message if validation fails.
+ * @returns {Object} - Returns an object with a success flag and an error message if validation fails.
  */
 export function validateQuizData(quizData) {
   // Validate the quiz title
@@ -21,59 +21,63 @@ export function validateQuizData(quizData) {
     (q) => q.options.length >= 2 && q.options.length <= 5
   );
 
-  // Return true if all validation criteria are met, otherwise false
+  // Check if the quiz title is valid
   if (!isValidTitle) {
     // Return an error message if the quiz title is invalid
     return {
-      error: "Invalid Title",
-      success: false
+      success: false,
+      error: "Title must be 10 to 30 characters long."
     };
   }
 
+  // Check if each question is valid
   if (!isValidQuestion) {
     // Return an error message if any quiz question is invalid
     return {
-      error: "Invalid Question",
-      success: false
+      success: false,
+      error: "Each question must be 10 to 200 characters long."
     };
   }
 
+  // Check if the number of options for each question is valid
   if (!hasValidNumberOfOptions) {
     // Return an error message if the number of options in any question is invalid
     return {
-      error: "Invalid Number Of Options",
-      success: false
+      success: false,
+      error: "Each question must have 2 to 5 options."
     };
   }
 
-  // Check whether all the options have proper values.
+  // Check whether any options are empty
   const hasAnyEmptyOption = quizData.questionOptions.some(question =>
-    question["options"].some(
+    question.options.some(
       option => option.trim() === ""
     )
   );
 
+  // Return an error if any option is empty in the quiz questions
   if (hasAnyEmptyOption) {
-    // Return an error message if any option is empty in the quiz questions
     return {
-      error: "Quiz questions cannot contain empty options",
-      success: false
-    }
+      success: false,
+      error: "Quiz questions must not have empty options."
+    };
   }
 
+  // Check if any question has an empty correct answer
   const hasEmptyCorrectOption = quizData.questionOptions.some(question => question.correctAnswer.trim() === '');
 
+  // Return an error if any question has an empty correct answer
   if (hasEmptyCorrectOption) {
-    // Return an error message if any question has an empty correct answer
     return {
-      error: "Please select at least one correct answer per question",
-      success: false
-    }
+      success: false,
+      error: "Choose at least one correct answer for each question."
+    };
   }
 
   // If no errors, return success true
   return { success: true };
 }
+
 
 /**
  * Calculates the score of a quiz based on user answers.
