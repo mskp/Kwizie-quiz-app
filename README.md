@@ -86,6 +86,14 @@ A sleek and responsive React Quiz App that allows users to create and play quizz
 
 4. **Open the URL [http://localhost:3000](http://localhost:3000) in your browser.**
 
+## Developer:
+
+- **Sushant Pandey:**
+  - GitHub: [https://github.com/mskp](https://github.com/mskp)
+  - LinkedIn: [https://www.linkedin.com/in/sushaantkp/](https://www.linkedin.com/in/sushaantkp/)
+  - Email: sushhantpandey@gmail.com
+
+
 ## License:
 
 This repository is MIT licensed. [Read more](./LICENSE.txt)
