@@ -1,5 +1,5 @@
 // Importing necessary dependencies and components
-import styles from "./CreateEditQuiz.module.css";
+import styles from "./QuizForm.module.css";
 import toast from "react-hot-toast";
 import DeleteIcon from '@mui/icons-material/Delete';
 import {
@@ -7,7 +7,8 @@ import {
     Grid,
     FormControlLabel,
     Checkbox,
-    Box
+    Box,
+    Typography
 } from "@mui/material";
 import StyledButton from "../StyledButton";
 import { createDeepCopy } from "../../utils/quizUtils";
@@ -24,13 +25,14 @@ import OptionsMenu from "./OptionsMenu";
 // - handleFormSubmit: Function to handle form submission.
 // - saveButtonActionName: The label for the save button.
 
-export default function CreateEditQuiz({
+export default function QuizForm({
     quizTitle,
     setQuizTitle,
     questions,
     setQuestions,
     handleFormSubmit,
-    saveButtonActionName
+    saveButtonActionName,
+    readOnly = false
 }) {
     // Function to add a new question
     const handleAddQuestion = () => {
@@ -43,7 +45,10 @@ export default function CreateEditQuiz({
     // Function to delete a question
     const handleDeleteQuestion = (questionIndex) => {
         if (questions?.length <= 1)
-            return toast.error("Each quiz must have a minimum of 1 question", { id: "quest-delete-toast" });
+            return toast.error("Each quiz must have a minimum of 1 question",
+                {
+                    id: "quest-delete-toast"
+                });
 
         setQuestions((prevQuestions) =>
             prevQuestions.filter((_, index) => index !== questionIndex)
@@ -92,9 +97,9 @@ export default function CreateEditQuiz({
 
     return (
         // Create/Edit Quiz Section
-        <section className={styles["create-quiz-card"]}>
+        <section className={styles["quiz-section"]}>
             {/* Quiz Form */}
-            <form onSubmit={handleFormSubmit} className={styles["quiz-create-form"]}>
+            <form onSubmit={handleFormSubmit} className={styles["quiz-form"]}>
                 {/* Input for Quiz Title */}
                 <input
                     className={styles["input-title"]}
@@ -103,6 +108,7 @@ export default function CreateEditQuiz({
                     placeholder="Quiz Title"
                     value={quizTitle}
                     onChange={(e) => setQuizTitle(e.target.value)}
+                    readOnly={readOnly}
                 />
                 {/* Mapping through Questions */}
                 {questions.map((question, questionIndex) => (
@@ -110,12 +116,10 @@ export default function CreateEditQuiz({
                         <div className={styles.question_info}>
                             {/* Display Question Count */}
                             <p className={styles.question_count}>Q. {questionIndex + 1}</p>
-                            {/* Button to Delete Question */}
-                            <button type="button" onClick={() => handleDeleteQuestion(questionIndex)} className={`${styles.delete_btn}`}>
-                                {/* Icon Button for Delete */}
-                            </button>
                             {/* Options Menu for Question */}
-                            <OptionsMenu onClickAddOption={() => handleAddOption(questionIndex)} onClickDelete={() => handleDeleteQuestion(questionIndex)} />
+                            {!readOnly &&
+                                <OptionsMenu onClickAddOption={() => handleAddOption(questionIndex)} onClickDelete={() => handleDeleteQuestion(questionIndex)} />
+                            }
                         </div>
                         {/* Container for Question Input */}
                         <div className={styles["question-container"]}>
@@ -124,6 +128,7 @@ export default function CreateEditQuiz({
                                 placeholder={`Enter question ${questionIndex + 1}`}
                                 className={styles.question}
                                 value={question.question}
+                                readOnly={readOnly}
                                 onChange={(e) =>
                                     handleQuestionChange(
                                         questionIndex,
@@ -142,6 +147,7 @@ export default function CreateEditQuiz({
                                     <input
                                         key={optionIndex}
                                         id={optionIndex}
+                                        readOnly={readOnly}
                                         type="text"
                                         placeholder={`Option ${optionIndex + 1}`}
                                         className={styles["option"]}
@@ -154,11 +160,11 @@ export default function CreateEditQuiz({
                                             )
                                         }
                                     />
-                                    {/* Container for Option Actions */}
+                                    {/* Container for Option Actions: show only when readonly is false */}
                                     <Grid container justifyContent="space-between" alignItems="center">
                                         {/* Button to Delete Option */}
                                         <Grid item>
-                                            <Button sx={{ color: "inherit" }} startIcon={<DeleteIcon />} onClick={() => handleDeleteOption(questionIndex, optionIndex)}>Delete</Button>
+                                            <Button disabled={readOnly} sx={{ color: "inherit" }} startIcon={<DeleteIcon />} onClick={() => handleDeleteOption(questionIndex, optionIndex)}>Delete</Button>
                                         </Grid>
                                         {/* Checkbox for Correct Answer */}
                                         <Grid item>
@@ -171,9 +177,14 @@ export default function CreateEditQuiz({
                                                         }
                                                         aria-label="check"
                                                         checked={Boolean(option && (option === question.correctAnswer))}
+                                                        disabled={readOnly}
                                                     />
                                                 }
-                                                label="Correct"
+                                                label={
+                                                    <Typography variant="body1" style={{ color: 'inherit' }}>
+                                                        Correct
+                                                    </Typography>
+                                                }
                                             />
                                         </Grid>
                                     </Grid>
@@ -182,30 +193,32 @@ export default function CreateEditQuiz({
                         </div>
                     </div>
                 ))}
-                {/* Container for Buttons */}
-                <Box className={styles.buttonsContainer} display="flex" justifyContent="space-between" gap={0.5}>
-                    {/* Button to Add Question */}
-                    <StyledButton
-                        type="button"
-                        variant="outlined"
-                        color="primary"
-                        onClick={handleAddQuestion}
-                        style={{ flexGrow: 1 }}
-                        buttonText="Add Question"
-                    >
-                        Add Question
-                    </StyledButton>
-                    {/* Button to Save Quiz */}
-                    <StyledButton
-                        type="submit"
-                        variant="outlined"
-                        color="primary"
-                        style={{ flexGrow: 1 }}
-                        buttonText={saveButtonActionName}
-                    >
-                        {saveButtonActionName}
-                    </StyledButton>
-                </Box>
+                {/* Container for Buttons: Show only when readonly is false */}
+                {!readOnly &&
+                    <Box className={styles.buttonsContainer} display="flex" justifyContent="space-between" gap={0.5}>
+                        {/* Button to Add Question */}
+                        <StyledButton
+                            type="button"
+                            variant="outlined"
+                            color="primary"
+                            onClick={handleAddQuestion}
+                            style={{ flexGrow: 1 }}
+                            buttonText="Add Question"
+                        >
+                            Add Question
+                        </StyledButton>
+                        {/* Button to Save Quiz */}
+                        <StyledButton
+                            type="submit"
+                            variant="outlined"
+                            color="primary"
+                            style={{ flexGrow: 1 }}
+                            buttonText={saveButtonActionName}
+                        >
+                            {saveButtonActionName}
+                        </StyledButton>
+                    </Box>
+                }
             </form>
         </section>
     )

@@ -43,6 +43,27 @@ const deleteConfirmationModalSlice = createSlice({
 // Exporting the actions created by the deleteConfirmationModalSlice
 export const { showDeleteModal, hideDeleteModal } = deleteConfirmationModalSlice.actions;
 
+// Creating a slice for the view quiz confirmation modal
+const viewQuizConfirmationModalSlice = createSlice({
+    name: "viewQuizModal",
+    initialState: {
+        value: false  // Initial state of the view quiz confirmation modal, set to false (hidden)
+    },
+    reducers: {
+        // Action to show the view quiz modal
+        showViewQuizModal: (state) => {
+            state.value = true;
+        },
+        // Action to hide the view quiz modal
+        hideViewQuizModal: (state) => {
+            state.value = false;
+        }
+    }
+});
+
+// Exporting the actions created by the viewQuizConfirmationModalSlice
+export const { showViewQuizModal, hideViewQuizModal } = viewQuizConfirmationModalSlice.actions;
+
 // Creating a slice for the quit quiz confirmation modal
 const quitQuizConfirmationModalSlice = createSlice({
     name: "quitModal",
@@ -68,7 +89,8 @@ export const { showQuitModal, hideQuitModal } = quitQuizConfirmationModalSlice.a
 const modalsReducers = {
     nameModal: nameModalSlice.reducer,
     deleteModal: deleteConfirmationModalSlice.reducer,
-    quitModal: quitQuizConfirmationModalSlice.reducer
+    quitModal: quitQuizConfirmationModalSlice.reducer,
+    viewQuizModal: viewQuizConfirmationModalSlice.reducer
 };
 
 // Exporting the combined reducers

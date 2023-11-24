@@ -80,8 +80,7 @@ export default function MyQuizzes() {
       <section style={{
         padding: "1rem",
         width: "100vw",
-        position: "absolute",
-        top: "5rem"
+        height: "100%",
       }}
       >
         {/* Header with title and button to create a new quiz */}
@@ -134,7 +133,7 @@ export default function MyQuizzes() {
                         <DeleteForeverIcon />
                       </IconButton>
                     </StyledTableCell>
-                    <StyledTableCell align="center" onClick={() => navigate(`/edit-quiz/${index}`)}>
+                    <StyledTableCell align="center" onClick={() => navigate(`/edit-quiz?q=${index}`)}>
                       <IconButton style={{ color: "inherit" }}>
                         <EditIcon />
                       </IconButton>
