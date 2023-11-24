@@ -5,36 +5,39 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import { validateQuizData } from "../utils/quizUtils";
 import { updateQuizData } from "../slices/quizSlice";
 import toast from "react-hot-toast";
-import CreateEditQuiz from "../components/CreateEditQuiz";
+import QuizForm from "../components/QuizForm";
 
 // Loader function to fetch data needed for the component
-export async function loader({ params }) {
+export async function loader({ request }) {
     // Extract quizIndex from params and return it
-    const { quizIndex } = params;
-    return quizIndex;
+    const url = new URL(request.url);
+    const q = url.searchParams.get("q");
+    return parseInt(q);
 }
 
 // EditQuiz Component
 // Represents the page for editing an existing quiz.
 
 export default function EditQuiz() {
+    // Redux hook for dispatch
+    const dispatch = useDispatch();
+    
+    // React Router hook for navigation
+    const navigate = useNavigate();
+
     // Retrieve quizIndex from the loader data
     const quizIndex = useLoaderData();
 
     // Retrieve quizData from the Redux store based on quizIndex
     const quizData = useSelector((state) => state.quiz.quizDetails[quizIndex]);
-
+    
     // State for quiz title
-    const [quizTitle, setQuizTitle] = useState(quizData.quizTitle);
+    const [quizTitle, setQuizTitle] = useState(quizData?.quizTitle);
 
     // State for questions
-    const [questions, setQuestions] = useState(quizData.questionOptions);
+    const [questions, setQuestions] = useState(quizData?.questionOptions);
 
-    // Redux hook for dispatch
-    const dispatch = useDispatch();
-
-    // React Router hook for navigation
-    const navigate = useNavigate();
+    if (!quizData) return <div>Quiz Not Found</div>
 
     // Function to handle the update of an existing quiz
     const handleUpdateQuiz = (e) => {
@@ -61,9 +64,9 @@ export default function EditQuiz() {
         return toast.error(error, { id: "update-quiz-toast" });
     };
 
-    // Render the CreateEditQuiz component with necessary props
+    // Render the QuizForm component with necessary props
     return (
-        <CreateEditQuiz
+        <QuizForm
             quizTitle={quizTitle}
             setQuizTitle={setQuizTitle}
             questions={questions}

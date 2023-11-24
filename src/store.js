@@ -16,6 +16,7 @@ export const store = configureStore({
         // Each modal is managed by a separate reducer in the modalsSlice
         nameModal: modalsReducers.nameModal,
         deleteModal: modalsReducers.deleteModal,
-        quitModal: modalsReducers.quitModal
+        quitModal: modalsReducers.quitModal,
+        viewQuizModal: modalsReducers.viewQuizModal
     }
 });

@@ -21,18 +21,20 @@ import { Toaster } from 'react-hot-toast';
 import App from './App'; // Root Component
 
 // Importing pages for routing
-import MyQuizzes from "./pages/MyQuizzes";
 import Home from "./pages/Home";
-import CreateQuiz from "./pages/CreateQuiz";
 import PlayQuiz from "./pages/PlayQuiz";
-import EditQuiz, { loader } from "./pages/EditQuiz";
+import MyQuizzes from "./pages/MyQuizzes";
+import CreateQuiz from "./pages/CreateQuiz";
+import EditQuiz, { loader as editQuizLoader } from "./pages/EditQuiz";
+import ViewQuiz, { loader as viewQuizLoader } from './pages/ViewQuiz';
+import ErrorPage from './pages/ErrorPage';
 
 // Creating a router with routes and elements
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <div>Page not found, go to <Link style={{ textDecoration: "underline" }} to="/">home</Link> </div>,
+    errorElement: <ErrorPage message='404 | Page not found' />,
     children: [
       {
         path: "/",
@@ -51,10 +53,16 @@ const router = createBrowserRouter([
         element: <MyQuizzes />
       },
       {
-        path: "/edit-quiz/:quizIndex",
+        path: "/view-quiz",
+        element: <ViewQuiz />,
+        errorElement: <ErrorPage message='Quiz not found' />,
+        loader: viewQuizLoader
+      },
+      {
+        path: "/edit-quiz",
         element: <EditQuiz />,
-        errorElement: <div>Quiz Not Found</div>,
-        loader
+        errorElement: <ErrorPage message='Quiz not found' />,
+        loader: editQuizLoader
       }
     ]
   },

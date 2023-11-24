@@ -16,8 +16,6 @@ const ConfirmationModal = ({
     const handleConfirm = () => {
         // Call the onConfirm callback
         onConfirm();
-        // Close the modal
-        onClose();
     };
 
     return (
@@ -43,7 +41,7 @@ const ConfirmationModal = ({
                         {cancelText}
                     </Button>
                     {/* Confirm Button */}
-                    <Button onClick={handleConfirm} sx={buttonStyles}>
+                    <Button onClick={onConfirm} sx={buttonStyles}>
                         {confirmText}
                     </Button>
                 </Box>

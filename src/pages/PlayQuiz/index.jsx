@@ -39,7 +39,6 @@ export default function PlayQuiz() {
 
   // State to manage the score and option selection status
   const [score, setScore] = useState(0);
-  const [isOptionSelected, setIsOptionSelected] = useState(false);
 
   // Get player name from Redux state
   const playerName = useSelector((state) => state.player.name);
@@ -74,7 +73,8 @@ export default function PlayQuiz() {
 
   // Handle click on the Next button
   const handleNextClick = () => {
-    if (!isOptionSelected) {
+    const currentSelectedOption = userAnswers[currentQuizIndex]?.[currentQuestionIndex];
+    if (!currentSelectedOption || currentSelectedOption === "" || currentSelectedOption === undefined) {
       return toast.error("Please select at least one option", { id: "option-selection-alert" });
     }
 
@@ -88,9 +88,6 @@ export default function PlayQuiz() {
     } else {
       setCurrentQuestionIndex((prev) => prev + 1);
     }
-
-    const nextQuestionAnswer = userAnswers[currentQuizIndex]?.[currentQuestionIndex + 1];
-    setIsOptionSelected(nextQuestionAnswer);
 
     setCurrentQuestionCount((prev) => prev + 1);
   };
@@ -112,12 +109,8 @@ export default function PlayQuiz() {
     }
 
     setCurrentQuestionCount((prev) => prev - 1);
-
-    // Update isOptionSelected based on whether an answer exists for the previous question
-    setIsOptionSelected(
-      userAnswers[currentQuizIndex]?.[currentQuestionIndex - 1]
-    );
   };
+
 
   // Handle replaying the quiz
   const handleReplay = () => {
@@ -127,8 +120,6 @@ export default function PlayQuiz() {
     setQuizOver(false);
     setUserAnswers(Array.from({ length: quizData.length }, () => ({})));
     setScore(0);
-    setIsOptionSelected(false);
-
     navigate("/play-quiz");
   };
 
@@ -141,7 +132,6 @@ export default function PlayQuiz() {
       [currentQuestionIndex]: selectedOption,
     };
     setUserAnswers(updatedUserAnswers);
-    setIsOptionSelected(true);
   };
 
   // Conditional rendering based on different states

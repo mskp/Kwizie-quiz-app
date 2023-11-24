@@ -1,11 +1,11 @@
-.create-quiz-card {
+.quiz-section {
   width: 50vw;
   @media (max-width: 767px) {
     width: 90vw;
   }
 }
 
-.quiz-create-form {
+.quiz-form {
   height: 100%;
   width: 100%;
   display: flex;
