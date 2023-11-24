@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import ConfirmationModal from './ConfirmationModal';
 
 // Defining the ConfirmViewQuizModal component
-export default function ConfirmViewQuizModal({ quizIndex }) {
+export default function ConfirmViewQuizModal() {
     // Getting access to the Redux dispatch function
     const dispatch = useDispatch();
 

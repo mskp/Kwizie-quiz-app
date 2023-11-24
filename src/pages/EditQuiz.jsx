@@ -17,11 +17,10 @@ export async function loader({ request }) {
 
 // EditQuiz Component
 // Represents the page for editing an existing quiz.
-
 export default function EditQuiz() {
     // Redux hook for dispatch
     const dispatch = useDispatch();
-    
+
     // React Router hook for navigation
     const navigate = useNavigate();
 
@@ -30,14 +29,15 @@ export default function EditQuiz() {
 
     // Retrieve quizData from the Redux store based on quizIndex
     const quizData = useSelector((state) => state.quiz.quizDetails[quizIndex]);
-    
+
     // State for quiz title
     const [quizTitle, setQuizTitle] = useState(quizData?.quizTitle);
 
     // State for questions
     const [questions, setQuestions] = useState(quizData?.questionOptions);
 
-    if (!quizData) return <div>Quiz Not Found</div>
+    // If quizData is not available, display "Quiz Not Found"
+    if (!quizData) return <div>Quiz Not Found</div>;
 
     // Function to handle the update of an existing quiz
     const handleUpdateQuiz = (e) => {

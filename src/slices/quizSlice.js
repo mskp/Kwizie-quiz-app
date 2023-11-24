@@ -1,6 +1,5 @@
-// Importing createSlice from Redux Toolkit for creating slices
+// Importing required dependencies
 import { createSlice } from '@reduxjs/toolkit';
-
 import { createSelector } from "reselect";
 
 // Retrieving quiz details from local storage or initializing an empty array
