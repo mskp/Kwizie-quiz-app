@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { setPlayerName } from '../../slices/playerSlice';
 import { hideNameModal } from '../../slices/modalsSlice';
 import modalStyle, { buttonStyles, buttonsContainerStyles } from "./modalStyles";
+import toast from 'react-hot-toast';
 
 // Defining the NameModal component
 export default function NameModal({ open }) {
@@ -24,13 +25,19 @@ export default function NameModal({ open }) {
     
     // Checking if the entered name is valid
     const invalidName = !name || name.length < 5 || name.length > 30;
-    if (invalidName) return;
+    if (invalidName) {
+      toast.error("Name must be 5-50 charcters long.", {id: "invalid-name-toast"});
+      return;
+    };
 
     // Dispatching the action to set the player name in the Redux store
     dispatch(setPlayerName(name));
 
     // Dispatching the action to hide the name modal
     dispatch(hideNameModal());
+    
+    // Display a toast message saying welcome
+    toast.success("Welcome to the quiz.", {id: "welcome-toast"});
   };
 
   // Rendering the NameModal component
