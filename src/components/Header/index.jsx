@@ -38,6 +38,11 @@ export default function Header() {
     return storedDarkMode ? JSON.parse(storedDarkMode) : true;
   });
 
+  // Effect to update the body class based on dark mode
+  useEffect(() => {
+    document.body.classList.toggle("dark-mode", darkMode);
+  }, [darkMode]);
+
   // React Router hook for getting the current location
   const location = useLocation();
 
@@ -46,7 +51,7 @@ export default function Header() {
   const quizData = useSelector(getQuizData) || [];
 
   // Flags to check if the current page is the play quiz page and if quiz data is empty
-  const isPlayQuizPage = location.pathname === "/play-quiz";
+  const isPlayQuizPage = (location.pathname === "/play-quiz");
   const isQuizDataEmpty = quizData.length === 0;
 
   // Function to toggle dark mode
@@ -58,10 +63,6 @@ export default function Header() {
     });
   };
 
-  // Effect to update the body class based on dark mode
-  useEffect(() => {
-    document.body.classList.toggle("dark-mode", darkMode);
-  }, [darkMode]);
 
   // Function to handle menu toggle
   function handleMenuToggle() {
@@ -106,7 +107,7 @@ export default function Header() {
           <div className="buttons" style={{ display: "flex" }}>
             {/* Theme toggle switch */}
             <ThemeToggleSwitch darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-            
+
             {/* Menu toggle button */}
             <button
               className={`menu-btn ${menuOpen ? "active" : ""}`}

@@ -11,13 +11,6 @@ const ConfirmationModal = ({
     cancelText,
     confirmText,
 }) => {
-
-    // Function to handle the confirmation action
-    const handleConfirm = () => {
-        // Call the onConfirm callback
-        onConfirm();
-    };
-
     return (
         <Modal
             open={open}
@@ -56,7 +49,7 @@ ConfirmationModal.propTypes = {
     onClose: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    description: PropTypes.string,
     cancelText: PropTypes.string.isRequired,
     confirmText: PropTypes.string.isRequired,
 };

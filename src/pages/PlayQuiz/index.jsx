@@ -19,6 +19,7 @@ import toast from "react-hot-toast";
 import { calculateQuizScore } from "../../utils/quizUtils";
 import { useNavigate } from "react-router-dom";
 
+// Main component for playing the quiz
 export default function PlayQuiz() {
   // React Router hook for navigation
   const navigate = useNavigate();
@@ -49,15 +50,19 @@ export default function PlayQuiz() {
 
   // Effect to handle modal display and beforeunload event
   useEffect(() => {
+    // Check if there is active quiz data
     if (quizData?.length && quizData.length !== 0) {
+      // Show the name modal when the component mounts
       dispatch(showNameModal());
 
+      // Handle beforeunload event to ask for confirmation before leaving the page
       const handleBeforeUnload = (e) => {
         e.preventDefault();
         e.returnValue = "";
       };
       window.addEventListener("beforeunload", handleBeforeUnload);
 
+      // Cleanup function to hide the name modal and remove the event listener
       return () => {
         dispatch(hideNameModal());
         window.removeEventListener("beforeunload", handleBeforeUnload);
@@ -73,22 +78,31 @@ export default function PlayQuiz() {
 
   // Handle click on the Next button
   const handleNextClick = () => {
+    // Get the user's selected option for the current question
     const currentSelectedOption = userAnswers[currentQuizIndex]?.[currentQuestionIndex];
+    // Check if an option is selected
     if (!currentSelectedOption || currentSelectedOption === "" || currentSelectedOption === undefined) {
+      // Display an error toast if no option is selected
       return toast.error("Please select at least one option", { id: "option-selection-alert" });
     }
 
+    // Check if it's the last question of the last quiz to show the result
     if (isLastQuestionInQuiz && currentQuizIndex === quizData.length - 1) {
+      // Calculate the quiz score and set the score state
       const calculatedScore = calculateQuizScore(quizData, userAnswers);
       setScore(calculatedScore);
+      // Set quizOver to true to show the result modal
       setQuizOver(true);
     } else if (isLastQuestionInQuiz) {
+      // Move to the next quiz if it's the last question
       setCurrentQuizIndex((prev) => prev + 1);
       setCurrentQuestionIndex(0);
     } else {
+      // Move to the next question in the current quiz
       setCurrentQuestionIndex((prev) => prev + 1);
     }
 
+    // Increment the current question count
     setCurrentQuestionCount((prev) => prev + 1);
   };
 
@@ -108,12 +122,13 @@ export default function PlayQuiz() {
       setCurrentQuestionIndex((prev) => prev - 1);
     }
 
+    // Decrement the current question count
     setCurrentQuestionCount((prev) => prev - 1);
   };
 
-
   // Handle replaying the quiz
   const handleReplay = () => {
+    // Reset states and navigate to the quiz page
     setCurrentQuizIndex(0);
     setCurrentQuestionIndex(0);
     setCurrentQuestionCount(1);
@@ -125,7 +140,9 @@ export default function PlayQuiz() {
 
   // Handle click on an option
   const handleOptionClick = (selectedOption) => {
+    // Play a click sound when an option is selected
     new Audio(clickSoundFile).play();
+    // Update the user's answers with the selected option
     const updatedUserAnswers = [...userAnswers];
     updatedUserAnswers[currentQuizIndex] = {
       ...updatedUserAnswers[currentQuizIndex],

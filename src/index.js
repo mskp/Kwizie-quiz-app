@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom/client';
 import './assets/globals.css';
 
 // Importing modules from react-router-dom for routing
-import { createBrowserRouter, Link, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Importing modules from react-redux for state management
 import { Provider } from 'react-redux';

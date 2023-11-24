@@ -1,8 +1,7 @@
 // Importing necessary dependencies and components
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addQuestion, getQuizData } from "../slices/quizSlice";
-import { useNavigate } from "react-router-dom";
+import { addQuestion } from "../slices/quizSlice";
 import toast from "react-hot-toast";
 import formatDate from "../utils/formatDate";
 import { validateQuizData } from "../utils/quizUtils";
@@ -26,11 +25,6 @@ export default function CreateQuiz() {
 
     // Redux hook for dispatch
     const dispatch = useDispatch();
-
-    // React Router hook for navigation
-    const navigate = useNavigate();
-
-    // const 
 
     // Function to handle the creation of a new quiz
     const handleCreateQuiz = (e) => {
