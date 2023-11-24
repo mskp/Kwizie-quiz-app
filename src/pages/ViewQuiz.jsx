@@ -10,6 +10,7 @@ export async function loader({ request }) {
     return parseInt(q);
 }
 
+// ViewQuiz component
 export default function ViewQuiz() {
     // Retrieve quizIndex from the loader data
     const quizIndex = useLoaderData();
@@ -17,17 +18,17 @@ export default function ViewQuiz() {
     // Retrieve quizData from the Redux store based on quizIndex
     const quizData = useSelector((state) => state.quiz.quizDetails[quizIndex]);
 
+    // If quizData is not available, display "Quiz Not Found"
     if (!quizData)
         return <div>Quiz Not Found</div>
 
-    // State for quiz title
+    // Extract quizTitle and questions from quizData
     const quizTitle = quizData.quizTitle;
-
-    // State for questions
     const questions = quizData.questionOptions;
 
     return (
         <>
+            {/* Render QuizForm component with readOnly set to true */}
             <QuizForm
                 quizTitle={quizTitle}
                 questions={questions}

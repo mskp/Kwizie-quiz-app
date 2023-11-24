@@ -1,8 +1,7 @@
 // Importing necessary dependencies and components
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addQuestion, getQuizData } from "../slices/quizSlice";
-import { useNavigate } from "react-router-dom";
+import { addQuestion } from "../slices/quizSlice";
 import toast from "react-hot-toast";
 import formatDate from "../utils/formatDate";
 import { validateQuizData } from "../utils/quizUtils";
@@ -12,7 +11,6 @@ import ConfirmViewQuizModal from "../components/modals/ConfirmViewQuizModal";
 
 // CreateQuiz Component
 // Represents the page for creating a new quiz.
-
 export default function CreateQuiz() {
     // State for quiz title
     const [quizTitle, setQuizTitle] = useState("");
@@ -22,15 +20,11 @@ export default function CreateQuiz() {
         { question: "", options: ["", ""], correctAnswer: "" },
     ]);
 
+    // Retrieve the state of the viewQuizModal from the Redux store
     const viewQuizModalState = useSelector((state) => state.viewQuizModal.value);
 
     // Redux hook for dispatch
     const dispatch = useDispatch();
-
-    // React Router hook for navigation
-    const navigate = useNavigate();
-
-    // const 
 
     // Function to handle the creation of a new quiz
     const handleCreateQuiz = (e) => {
@@ -62,6 +56,7 @@ export default function CreateQuiz() {
     // Render the QuizForm component with necessary props
     return (
         <>
+            {/* Conditionally render QuizForm or ConfirmViewQuizModal based on viewQuizModalState */}
             {!viewQuizModalState ? (
                 <QuizForm
                     quizTitle={quizTitle}
@@ -71,9 +66,9 @@ export default function CreateQuiz() {
                     handleFormSubmit={handleCreateQuiz}
                     saveButtonActionName={"Create Quiz"}
                 />
-            )
-                :
-                <ConfirmViewQuizModal />}
+            ) : (
+                <ConfirmViewQuizModal />
+            )}
         </>
     );
 }

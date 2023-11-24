@@ -1,5 +1,6 @@
-// Importing createSlice from Redux Toolkit for creating slices
+// Importing required dependencies
 import { createSlice } from '@reduxjs/toolkit';
+import { createSelector } from "reselect";
 
 // Retrieving quiz details from local storage or initializing an empty array
 const quizDetails = JSON.parse(localStorage.getItem('quizData')) ?? [];
@@ -58,9 +59,13 @@ const quizSlice = createSlice({
 });
 
 // Selector to get active quiz data
-export const getQuizData = state => {
-  return state.quiz.quizDetails.filter(quiz => quiz.status === 1);
-};
+export const getQuizData = createSelector(
+  (state) => state.quiz.quizDetails,
+  (quizData) => {
+    const filteredQuizData = quizData.filter(quiz => quiz.status === 1)
+    return filteredQuizData;
+  }
+);
 
 // Selector to get the total number of active questions
 export const getTotalActiveQuestionsLength = state => {

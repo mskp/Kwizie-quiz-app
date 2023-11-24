@@ -22,7 +22,7 @@ export default function ConfirmDeleteModal({ index, open }) {
     dispatch(hideDeleteModal());
 
     // Displaying a toast notification for successful deletion
-    toast.error(`Quiz "${quizDetails[quizIndex].quizTitle}" deleted successfully`, {
+    toast.error(`Quiz ${quizDetails[quizIndex].quizTitle} deleted successfully`, {
       id: 'quiz-delete-toast',
     });
   };
