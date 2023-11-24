@@ -128,13 +128,13 @@ export default function MyQuizzes() {
                       /></StyledTableCell>
                     <StyledTableCell align="center">{quiz.createdOn}</StyledTableCell>
                     {/* Buttons for deleting and editing a quiz */}
-                    <StyledTableCell align="center" onClick={() => handleShowModal(index)}>
-                      <IconButton style={{ color: "inherit" }}>
+                    <StyledTableCell align="center">
+                      <IconButton style={{ color: "inherit" }} onClick={() => handleShowModal(index)}>
                         <DeleteForeverIcon />
                       </IconButton>
                     </StyledTableCell>
-                    <StyledTableCell align="center" onClick={() => navigate(`/edit-quiz?q=${index}`)}>
-                      <IconButton style={{ color: "inherit" }}>
+                    <StyledTableCell align="center">
+                      <IconButton style={{ color: "inherit" }} onClick={() => navigate(`/edit-quiz?q=${index}`)}>
                         <EditIcon />
                       </IconButton>
                     </StyledTableCell>
