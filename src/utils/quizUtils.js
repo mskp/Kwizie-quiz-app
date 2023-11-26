@@ -66,8 +66,12 @@ export function validateQuizData(quizData) {
   // Check if any question has an empty correct answer
   const hasEmptyCorrectOption = quizData.questionOptions.some(question => question.correctAnswer.trim() === '');
 
+  const isCorrectOptionNotInOptions = quizData.questionOptions.some(question => {
+    return !question.options.includes(question.correctAnswer);
+  })
+
   // Return an error if any question has an empty correct answer
-  if (hasEmptyCorrectOption) {
+  if (hasEmptyCorrectOption || isCorrectOptionNotInOptions) {
     return {
       success: false,
       error: "Choose at least one correct answer for each question."

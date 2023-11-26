@@ -80,8 +80,16 @@ export default function QuizForm({
     // Function to delete an option
     const handleDeleteOption = (questionIndex, optionIndex) => {
         const updatedQuestions = createDeepCopy(questions);
-        if (updatedQuestions[questionIndex].options.length <= 2)
+        if (updatedQuestions[questionIndex].options.length <= 2) {
             return toast.error("Can't have less than 2 options", { id: "warning-toast" });
+        }
+
+        if (
+            updatedQuestions[questionIndex].options[optionIndex] ===
+            updatedQuestions[questionIndex].correctAnswer
+        ) {
+            updatedQuestions[questionIndex].correctAnswer = "";
+        }
         updatedQuestions[questionIndex].options.splice(optionIndex, 1);
         setQuestions(updatedQuestions);
     };

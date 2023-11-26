@@ -18,7 +18,6 @@ export default function ConfirmViewQuizModal() {
     const handleViewQuiz = () => {
         // Dispatching the action to hide the view quiz modal
         dispatch(hideViewQuizModal());
-        console.log(handleViewQuiz)
         navigate(`/view-quiz?q=${latestQuizIndex}`);
     };
 
