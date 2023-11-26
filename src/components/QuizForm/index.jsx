@@ -89,7 +89,7 @@ export default function QuizForm({
     // Function to add an option
     const handleAddOption = (questionIndex) => {
         let updatedQuestions = createDeepCopy(questions);
-        if (updatedQuestions[questionIndex].options.length >= 5)
+        if (updatedQuestions[questionIndex].options.length >= 6)
             return toast.error("Can't add more than 5 options", { id: "warning-toast" });
         updatedQuestions[questionIndex].options.push("");
         setQuestions(updatedQuestions);
