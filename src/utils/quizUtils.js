@@ -18,7 +18,7 @@ export function validateQuizData(quizData) {
 
   // Validate the number of options for each question in the questionOptions array
   const hasValidNumberOfOptions = quizData.questionOptions.every(
-    (q) => q.options.length >= 2 && q.options.length <= 5
+    (q) => q.options.length >= 2 && q.options.length <= 6
   );
 
   // Check if the quiz title is valid
