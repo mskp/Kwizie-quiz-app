@@ -16,12 +16,12 @@ const navDetails = [
     name: "Home",
   },
   {
-    path: "/play-quiz",
-    name: "Play Quiz",
-  },
-  {
     path: "/my-quizzes",
     name: "My Quizzes",
+  },
+  {
+    path: "/play-quiz",
+    name: "Play Quiz",
   },
 ];
 
