@@ -1,8 +1,8 @@
 # Kwizie - Create & Play Quizzes
 
-![Kwizie Logo](https://kwizie.vercel.app/icon-192x192.png)
+![Kwizie Logo](https://kwizie.sushant.fun/icon-192x192.png)
 
-**Deployment URL [https://kwizie.vercel.app](https://kwizie.vercel.app)**
+**Deployment URL [https://kwizie.sushant.fun](https://kwizie.sushant.fun)**
 
 A sleek and responsive React Quiz App that allows users to create and play quizzes. The application leverages Material UI for a polished user interface and Redux Toolkit for efficient state management. User-created quizzes are stored in the local storage, providing persistency across sessions.
 
